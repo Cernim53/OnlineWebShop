@@ -1,0 +1,57 @@
+﻿@model EditProductViewModel
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        @await Html.PartialAsync("AdministrationMenu")
+        <div class="col text-center">
+            <div class="validation" asp-validation-summary="All"></div>
+            <h3>Редактировать информацию о продукте</h3>
+            <input type="hidden" name="id" value="@Model.Id" />           
+            <div>
+                <label asp-for="Name">Название</label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name" />
+            </div><br />
+            <div>
+                <label asp-for="Cost">Цена</label>
+                <input asp-for="Cost" />
+                <span asp-validation-for="Cost" />
+            </div>
+            <br />
+            <div>
+                <label asp-for="Description">Описание</label>
+                <input asp-for="Description" />
+                <span asp-validation-for="Description" />
+            </div>
+            <br />
+            <div>
+                <label asp-for="Pages">Количество страниц</label>
+                <input asp-for="Pages" />
+                <span asp-validation-for="Pages" />
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+
+            @foreach (var imagePath in Model.ImagesPaths)
+            {
+                <div>
+                    <img src="@imagePath" width="150" height="150">
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UploadedFiles">Загрузить изображения</label>
+        <input type="file" asp-for="UploadedFiles" multiple class="form-control" />
+        <span asp-validation-for="UploadedFiles" />
+    </div>
+    <br /> 
+    <div>
+    <button class="btn btn-dark" type="submit" asp-area="Admin" asp-controller="product" asp-action="Edit" asp-route-productId="@Model.Id">Сохранить</button>
+    </div>
+</form>

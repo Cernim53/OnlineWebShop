@@ -1,0 +1,28 @@
+﻿@model UserViewModel
+
+<form method="post">
+    <div class="row">
+        @await Html.PartialAsync("AdministrationMenu")
+        <div class="col text-center">
+            <div class="validation" asp-validation-summary="All"></div>
+            <h3>Редактировать информацию о пользователе</h3>
+            <div>
+                <label asp-for="Email">Логин (E-mail)</label>
+                <input asp-for="Email" />
+                <span asp-validation-for="Email" />
+            </div><br />   
+            <div>
+                <label asp-for="Name">Имя</label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name" />
+            </div><br />
+            <div>
+                <label asp-for="Age">Возраст</label>
+                <input asp-for="Age" />
+                <span asp-validation-for="Age" />
+            </div><br />
+            <br />
+            <button class="btn btn-dark" type="submit" asp-area="Admin" asp-controller="user" asp-action="Edit" asp-route-userName="@Model.Email">Сохранить</button>
+        </div>
+    </div>
+</form>

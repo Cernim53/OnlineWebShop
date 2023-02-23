@@ -1,0 +1,46 @@
+﻿@model CartViewModel
+
+@if (Model == null || Model.Items.Count==0)
+{
+    <h3>Корзина пустая</h3>
+}
+else
+{
+    <div class="row">
+        <div class="col">
+            <a class="btn btn-danger btn-sm float-right"  asp-area="" asp-controller="cart" asp-action="clear" role="button">Очистить корзину</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Цена руб</th>
+                        <th>Количество</th>
+                        <th>Стоимость руб</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Product.Name</td>
+                            <td>@item.Product.Cost</td>
+                            <td>
+                                <a class="btn btn-dark" asp-area="" asp-controller="cart" asp-action="delete" asp-route-itemId="@item.Product.Id" role="button">-</a>
+                                @item.Amount
+                                <a class="btn btn-dark" asp-area="" asp-controller="cart" asp-action="add" asp-route-productId="@item.Product.Id" role="button">+</a>
+                            </td>
+                            <td>@item.Cost</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="text-right">
+        <div class="text-right">
+            <h3>Итого @Model.FullCost руб</h3>
+            <a class="btn btn-success btn-sm" asp-area="" asp-controller="home" asp-action="index" role="button">Продолжить покупки</a>
+            <a class="btn btn-success btn-sm" asp-area="" asp-controller="order" asp-action="index" role="button">Оформить заказ</a>
+        </div>
+    </div>
+}

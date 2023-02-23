@@ -1,0 +1,21 @@
+﻿@model ProductViewModel
+
+<div class="row">
+    <div class="col-2 card shadow">
+        <img class="card-img-bottom" src="@Model.ImagePath" />
+    </div>
+    <div class="col-3">
+        <h4>@Model.Name</h4>
+        <h5>@Model.Description</h5>
+    </div>
+    <div class="col-2">
+        <h4>@Model.Cost руб.</h4>
+        <a class="btn btn-success btn-sm" asp-area="" asp-controller="home" asp-action="index" role="button">Продолжить покупки</a>
+        <p></p>
+        <a class="btn btn-success btn-sm" asp-area="" asp-controller="cart" asp-action="add" asp-route-productId="@Model.Id" role="button">Добавить в корзину</a>
+        <p></p>
+        <a class="btn btn-success btn-sm" asp-area="" asp-controller="compare" asp-action="add" asp-route-productId="@Model.Id" role="button">Добавить в сравнение</a>
+        <p></p>
+        <a class="btn btn-success btn-sm" asp-area="" asp-controller="favourite" asp-action="add" asp-route-productId="@Model.Id" role="button">Добавить в избранное</a>
+    </div>
+</div>
